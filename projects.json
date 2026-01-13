@@ -1,0 +1,53 @@
+{
+  "capstone-loan-system": {
+    "title": "Capstone Project – Loan Management System",
+    "folder": "images/projects/capstone-loan-system",
+    "mainImage": "images/capstone-loan-system.png"
+  },
+  "lavalust-loan-system": {
+    "title": "Simple Loan Management System (Lavalust)",
+    "folder": "images/projects/lavalust-loan-system",
+    "mainImage": "images/lavalust-loan-system.jpg"
+  },
+  "attendance-system": {
+    "title": "Concentric Intern Attendance System",
+    "folder": "images/projects/attendance-system",
+    "mainImage": "images/attendance-system.jpg"
+  },
+  "hotel-management": {
+    "title": "Hotel Management System",
+    "folder": "images/projects/hotel-management",
+    "mainImage": "images/hotel-management.jpg"
+  },
+  "password-manager": {
+    "title": "Password Manager",
+    "folder": "images/projects/password-manager",
+    "mainImage": "images/password-manager.jpg"
+  },
+  "campusconnect": {
+    "title": "CampusConnect",
+    "folder": "images/projects/campusconnect",
+    "mainImage": "images/campusconnect.jpg"
+  },
+  "student-services": {
+    "title": "Student Services Portal",
+    "folder": "images/projects/student-services",
+    "mainImage": "images/student-services.jpg"
+  },
+  "inventory-management": {
+    "title": "Inventory Management System",
+    "folder": "images/projects/inventory-management",
+    "mainImage": "images/inventory-management.jpg"
+  },
+  "endless-room-game": {
+    "title": "Endless Room (Game Project)",
+    "folder": "images/projects/endless-room-game",
+    "mainImage": "images/endless-room-game.jpg"
+  },
+  "time-keeping-system": {
+    "title": "Time Keeping System (TESDA NC III Project)",
+    "folder": "images/projects/time-keeping-system",
+    "mainImage": "images/time-keeping-system.jpg"
+  }
+}
+
