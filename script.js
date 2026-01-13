@@ -396,8 +396,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Show loading state
+            // Update modal title immediately
+            document.getElementById('projectGalleryModalLabel').textContent = projectTitle || 'Project Gallery';
+
+            // Show modal immediately with loading state
             showGalleryLoading();
+            galleryModal.show();
 
             try {
                 console.log(`Detecting images for project: ${projectId}`);
@@ -434,6 +438,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (currentImages.length === 0) {
                     hideGalleryLoading();
+                    galleryModal.hide();
                     const folderPath = project.folder || `images/projects/${projectId}`;
                     const message = `No images found for this project.\n\n` +
                         `Please add images to:\n${folderPath}\n\n` +
@@ -451,12 +456,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                // Update modal title
-                document.getElementById('projectGalleryModalLabel').textContent = projectTitle;
-
-                // Hide loading and open gallery
+                // Update gallery content and hide loading
+                updateGalleryImage();
+                updateThumbnails();
+                updateImageCounter();
                 hideGalleryLoading();
-                openGallery();
             } catch (error) {
                 console.error('Error loading gallery images:', error);
                 hideGalleryLoading();
@@ -467,7 +471,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function showGalleryLoading() {
-        const mainImage = document.getElementById('galleryMainImage');
         const modalBody = document.querySelector('.gallery-modal-body');
 
         let loadingOverlay = document.getElementById('galleryLoadingOverlay');
@@ -480,7 +483,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(15, 23, 42, 0.95);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -488,11 +492,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 border-radius: 24px;
             `;
             loadingOverlay.innerHTML = `
-                <div style="text-align: center; color: white;">
-                    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                <div style="text-align: center; color: var(--text-primary);">
+                    <div class="spinner-border" role="status" style="width: 3rem; height: 3rem; color: var(--primary-color); border-width: 0.3em;">
                         <span class="visually-hidden">Loading...</span>
                     </div>
-                    <p class="mt-3">Loading gallery...</p>
+                    <p class="mt-3" style="font-weight: 600; color: var(--text-primary); margin-top: 1rem !important;">Loading gallery...</p>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Please wait</p>
                 </div>
             `;
             modalBody.appendChild(loadingOverlay);
@@ -511,7 +516,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateGalleryImage();
         updateThumbnails();
         updateImageCounter();
-        galleryModal.show();
+        // Modal is already shown, just ensure content is updated
     }
 
     function updateGalleryImage() {
