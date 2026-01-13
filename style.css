@@ -392,12 +392,45 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
 }
 
-.hero-section h2 {
+.hero-section h2,
+.hero-section .hero-subtitle {
     font-size: clamp(1.25rem, 2.5vw, 1.75rem);
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 1.5rem;
     animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+/* Modern gradient text design for subtitle */
+.hero-section h2.hero-subtitle,
+.hero-section .hero-subtitle {
+    background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Add a subtle glow effect */
+.hero-section h2.hero-subtitle::after,
+.hero-section .hero-subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    opacity: 0.6;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 0.3; transform: translateX(-100%); }
+    50% { opacity: 0.8; transform: translateX(100%); }
 }
 
 .hero-section p {
@@ -405,6 +438,21 @@ h1, h2, h3, h4, h5, h6 {
     color: rgba(255, 255, 255, 0.95);
     margin-bottom: 2rem;
     animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+/* Hero Section Buttons Container */
+.hero-section .d-flex {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.hero-section .btn {
+    flex: 0 0 auto;
+    min-width: 160px;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .hero-image {
@@ -949,8 +997,23 @@ section h2 {
         font-size: 2.5rem;
     }
 
-    .hero-section h2 {
+    .hero-section h2,
+    .hero-section .hero-subtitle {
         font-size: 1.25rem;
+    }
+
+    /* Fix button alignment on mobile */
+    .hero-section .d-flex {
+        justify-content: center;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .hero-section .btn {
+        flex: 1 1 auto;
+        min-width: 140px;
+        max-width: 200px;
+        width: 100%;
     }
 
     .about-content,
@@ -989,6 +1052,24 @@ section h2 {
 @media (max-width: 576px) {
     .hero-section h1 {
         font-size: 2rem;
+    }
+
+    .hero-section h2,
+    .hero-section .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-section .d-flex {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .hero-section .btn {
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+        padding: 14px 24px;
     }
 
     .skill-card,
