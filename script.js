@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, observerOptions);
 
     // Observe project cards and skill cards for fade-in effect
-    const animatedElements = document.querySelectorAll('.project-card, .skill-card, .about-content');
+    const animatedElements = document.querySelectorAll('.project-card, .skill-card, .about-content, .certificate-card');
     animatedElements.forEach((el, index) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -633,6 +633,36 @@ document.addEventListener('DOMContentLoaded', function () {
             createFallbackProjectsData();
         }
     })();
+
+    // ============================================
+    // Certificate Modal Functionality
+    // ============================================
+
+    const certificateModal = new bootstrap.Modal(document.getElementById('certificateModal'));
+    const certificateTriggers = document.querySelectorAll('.clickable-certificate');
+
+    certificateTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function () {
+            const certificateTitle = this.getAttribute('data-title');
+            const certificateImg = this.querySelector('.certificate-img');
+            
+            if (!certificateImg) {
+                console.error('Certificate image not found');
+                return;
+            }
+
+            // Update modal title
+            document.getElementById('certificateModalLabel').textContent = certificateTitle || 'Certificate';
+            
+            // Update modal image
+            const modalImage = document.getElementById('certificateMainImage');
+            modalImage.src = certificateImg.src;
+            modalImage.alt = certificateTitle || 'Certificate';
+            
+            // Show modal
+            certificateModal.show();
+        });
+    });
 
     // Console message for developers
     console.log('%c👋 Welcome to Kenjie Lucy Portfolio!', 'color: #6366f1; font-size: 16px; font-weight: bold;');
